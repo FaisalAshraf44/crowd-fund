@@ -16,7 +16,8 @@ export const COLORS = {
     green: '#58A771',
     lightGreen: `rgba(88, 167, 113, 0.1)`,
     red: '#CC3133',
-    lightRed: 'rgba(204, 49, 51, 0.1)'
+    lightRed: 'rgba(204, 49, 51, 0.1)',
+    chartLabel: ' #333333'
 };
 export const SIZES = {
     // global sizes

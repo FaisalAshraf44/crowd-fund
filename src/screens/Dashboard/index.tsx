@@ -6,7 +6,9 @@ import {
   TouchableOpacity,
   ScrollView,
 } from 'react-native';
+import InvestmentAnalysis from '../../components/Analysis';
 import InvestmentsData from '../../components/InvestmentsData';
+import ProfitDistribution from '../../components/ProfitDistribution';
 import SearchBox from '../../components/SearchBox';
 import {COLORS, FONTS} from '../../constants';
 import {ExploreIcon, GrowthIcon, InvestmentsIcon} from '../../icons';
@@ -16,7 +18,10 @@ interface DashboardProps {}
 
 const Dashboard = (props: DashboardProps) => {
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView
+      style={styles.container}
+      contentContainerStyle={{paddingBottom: 32}}
+      showsVerticalScrollIndicator={false}>
       <View style={styles.infoContainer}>
         <View>
           <Text style={styles.title}>Property Dashboard</Text>
@@ -55,6 +60,8 @@ const Dashboard = (props: DashboardProps) => {
         }
         growth={-1.1}
       />
+      <InvestmentAnalysis />
+      <ProfitDistribution />
     </ScrollView>
   );
 };
