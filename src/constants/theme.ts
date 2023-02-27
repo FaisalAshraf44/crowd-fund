@@ -9,6 +9,7 @@ export const COLORS = {
     primaryDark: '#141414',
     darkGray: '#9C9C9C',
     lightGray: '#E6E6E6',
+    gray: '#F5F5F5',
     blue: '#2D53DA',
     lightBlue: '#F2F5FD',
     lightYellow: '#FDEFC4',
@@ -17,7 +18,8 @@ export const COLORS = {
     lightGreen: `rgba(88, 167, 113, 0.1)`,
     red: '#CC3133',
     lightRed: 'rgba(204, 49, 51, 0.1)',
-    chartLabel: ' #333333'
+    chartLabel: ' #333333',
+    title: '#535353'
 };
 export const SIZES = {
     // global sizes
@@ -92,6 +94,12 @@ export const FONTS = {
         fontSize: 12,
         color: COLORS.secondary,
         lineHeight: 16,
+    },
+    title: {
+        fontFamily: 'Metropolis-Regular',
+        fontSize: 14,
+        lineHeight: 20,
+        color: COLORS.title,
     }
 };
 

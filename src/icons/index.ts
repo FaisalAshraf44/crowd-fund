@@ -15,6 +15,9 @@ import SearchIcon from './SearchIcon'
 import GrowthIcon from './GrowthIcon'
 import GrowthUpIcon from './GrowthUpIcon'
 import GrowthDownIcon from './GrowthDownIcon'
+import ArrowDownIcon from './ArrowDownIcon'
+import FiltersIcon from './FiltersIcon'
+import MenuIcon from './MenuIcon'
 
 export {
     Logo,
@@ -33,5 +36,8 @@ export {
     SearchIcon,
     GrowthIcon,
     GrowthUpIcon,
-    GrowthDownIcon
+    GrowthDownIcon,
+    ArrowDownIcon,
+    FiltersIcon,
+    MenuIcon
 }

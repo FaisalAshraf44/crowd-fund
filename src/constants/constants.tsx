@@ -15,6 +15,7 @@ export const DrawerList = [
   {
     id: 2,
     label: 'Investments',
+    value: 14,
     icon: <InvestmentsIcon />,
   },
   {

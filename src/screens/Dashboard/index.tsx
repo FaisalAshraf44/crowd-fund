@@ -6,8 +6,9 @@ import {
   TouchableOpacity,
   ScrollView,
 } from 'react-native';
-import InvestmentAnalysis from '../../components/Analysis';
+import InvestmentAnalysis from '../../components/InvestmentsAnalysis';
 import InvestmentsData from '../../components/InvestmentsData';
+import InvestmentsList from '../../components/InvestmentsList';
 import ProfitDistribution from '../../components/ProfitDistribution';
 import SearchBox from '../../components/SearchBox';
 import {COLORS, FONTS} from '../../constants';
@@ -62,6 +63,7 @@ const Dashboard = (props: DashboardProps) => {
       />
       <InvestmentAnalysis />
       <ProfitDistribution />
+      <InvestmentsList />
     </ScrollView>
   );
 };

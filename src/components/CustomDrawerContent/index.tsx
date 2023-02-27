@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   Image,
   ScrollView,
@@ -6,14 +7,18 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React from 'react';
-import {COLORS, DrawerList, FONTS, SIZES} from '../../constants';
+import {DrawerNavigationHelpers} from '@react-navigation/drawer/lib/typescript/src/types';
+import {COLORS, DrawerList, FONTS} from '../../constants';
 import {profile} from '../../assets/images';
 import Divider from '../Divider';
 import {CloseIcon, Logo, LogoText} from '../../icons';
 import ListItem from '../ListItem';
 
-const CustomDrawerContent = ({navigation}: {navigation: any}) => {
+const CustomDrawerContent = ({
+  navigation,
+}: {
+  navigation: DrawerNavigationHelpers;
+}) => {
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
@@ -41,7 +46,11 @@ const CustomDrawerContent = ({navigation}: {navigation: any}) => {
           {DrawerList.map((item, index) => {
             return (
               <View key={`drawerContent${index}`}>
-                <ListItem label={item.label} icon={item.icon} />
+                <ListItem
+                  label={item.label}
+                  icon={item.icon}
+                  value={item.value}
+                />
                 {index === 4 ? (
                   <View style={{paddingVertical: 24}}>
                     <Divider />
