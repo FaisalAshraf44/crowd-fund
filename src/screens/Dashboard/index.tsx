@@ -1,11 +1,13 @@
-import * as React from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   Text,
   View,
   StyleSheet,
   TouchableOpacity,
   ScrollView,
+  ActivityIndicator,
 } from 'react-native';
+import FetchMock from 'react-native-fetch-mock';
 import InvestmentAnalysis from '../../components/InvestmentsAnalysis';
 import InvestmentsData from '../../components/InvestmentsData';
 import InvestmentsList from '../../components/InvestmentsList';
@@ -14,10 +16,43 @@ import SearchBox from '../../components/SearchBox';
 import {COLORS, FONTS} from '../../constants';
 import {ExploreIcon, GrowthIcon, InvestmentsIcon} from '../../icons';
 import ReturnIcon from '../../icons/ReturnIcon';
+import {DashboardData} from '../../constants/types';
 
 interface DashboardProps {}
 
+const fetch = new FetchMock(require('../../../__mocks__')).fetch;
+
 const Dashboard = (props: DashboardProps) => {
+  const [investmentsData, setInvestmentsData] = useState<DashboardData>();
+  const [loading, setLoading] = useState(true);
+
+  const getData = async () => {
+    await fetch('/api/users')
+      .then((response: any) => response.json())
+      .then((res: DashboardData) => {
+        setInvestmentsData(res);
+        setLoading(false);
+      })
+      .catch((err: string) => {
+        console.warn(err);
+        setLoading(false);
+      });
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  if (loading) {
+    return (
+      <View style={styles.loadingContainer}>
+        <ActivityIndicator color={COLORS.blue} />
+      </View>
+    );
+  }
+
+  const {investor} = investmentsData;
+
   return (
     <ScrollView
       style={styles.container}
@@ -27,7 +62,7 @@ const Dashboard = (props: DashboardProps) => {
         <View>
           <Text style={styles.title}>Property Dashboard</Text>
           <Text style={{...FONTS.h2, fontWeight: '400'}}>
-            Welcome, Cameron!
+            Welcome, {investor.firstName}!
           </Text>
         </View>
         <TouchableOpacity style={[styles.infoContainer, styles.browse]}>
@@ -37,7 +72,7 @@ const Dashboard = (props: DashboardProps) => {
       </View>
       <SearchBox customStyles={{marginVertical: 24}} />
       <InvestmentsData
-        value="320,654.00"
+        value={investor.totalInvested}
         label="Total Invested"
         icon={
           <InvestmentsIcon
@@ -46,24 +81,24 @@ const Dashboard = (props: DashboardProps) => {
         }
       />
       <InvestmentsData
-        value="320,654.00"
+        value={investor.currentValue}
         label="Current Value"
         icon={
           <GrowthIcon style={{width: 18, height: 19, color: COLORS.blue}} />
         }
-        growth={1.1}
+        growth={investor.currentGrowth}
       />
       <InvestmentsData
-        value="17%"
+        value={investor.avgReturn}
         label="Average Return"
         icon={
           <ReturnIcon style={{width: 18, height: 19, color: COLORS.blue}} />
         }
-        growth={-1.1}
+        growth={investor.avgGrowth}
       />
       <InvestmentAnalysis />
       <ProfitDistribution />
-      <InvestmentsList />
+      <InvestmentsList data={investmentsData?.investments || []} />
     </ScrollView>
   );
 };
@@ -75,6 +110,11 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#F5F5F5',
     padding: 16,
+  },
+  loadingContainer: {
+    flex: 1,
+    alignItems: 'center',
+    paddingTop: 80,
   },
   infoContainer: {
     flexDirection: 'row',

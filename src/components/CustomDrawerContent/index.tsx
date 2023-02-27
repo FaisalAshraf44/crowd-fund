@@ -34,7 +34,7 @@ const CustomDrawerContent = ({
       </View>
       <View style={styles.profileContainer}>
         <Image source={profile} style={styles.imageStyle} />
-        <Text style={styles.name}>Cameron Williamson</Text>
+        <Text style={styles.name}>Faisal Ashraf</Text>
         <Text style={styles.designation}>Co-Founder at ZeeBrooks</Text>
       </View>
 
