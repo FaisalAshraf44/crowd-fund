@@ -22,7 +22,7 @@ yarn
 To run on android
 
 ```
-npx react-native run-android OR yarn android
+npx react-native run-android 
 ```
 
 To run on ios
@@ -32,6 +32,6 @@ npx pod-install ios
 ```
 
 ```
-npx react-native run-ios OR yarn ios
+npx react-native run-ios
 ```
 
