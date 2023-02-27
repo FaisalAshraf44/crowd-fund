@@ -34,4 +34,3 @@ npx pod-install ios
 ```
 npx react-native run-ios
 ```
-

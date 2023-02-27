@@ -8,7 +8,7 @@ import {
   View,
 } from 'react-native';
 import {DrawerNavigationHelpers} from '@react-navigation/drawer/lib/typescript/src/types';
-import {COLORS, DrawerList, FONTS} from '../../constants';
+import {COLORS, DrawerList, FONTS, HIT_SLOP} from '../../constants';
 import {profile} from '../../assets/images';
 import Divider from '../Divider';
 import {CloseIcon, Logo, LogoText} from '../../icons';
@@ -28,7 +28,14 @@ const CustomDrawerContent = ({
             <LogoText />
           </View>
         </View>
-        <TouchableOpacity onPress={() => navigation.closeDrawer()}>
+        <TouchableOpacity
+          hitSlop={{
+            left: HIT_SLOP,
+            right: HIT_SLOP,
+            top: HIT_SLOP,
+            bottom: HIT_SLOP,
+          }}
+          onPress={() => navigation.closeDrawer()}>
           <CloseIcon style={{height: 14, width: 14, color: COLORS.black}} />
         </TouchableOpacity>
       </View>

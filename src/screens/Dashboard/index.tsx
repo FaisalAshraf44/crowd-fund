@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import {
   Text,
   View,
@@ -7,7 +7,6 @@ import {
   ScrollView,
   ActivityIndicator,
 } from 'react-native';
-import FetchMock from 'react-native-fetch-mock';
 import InvestmentAnalysis from '../../components/InvestmentsAnalysis';
 import InvestmentsData from '../../components/InvestmentsData';
 import InvestmentsList from '../../components/InvestmentsList';
@@ -16,42 +15,24 @@ import SearchBox from '../../components/SearchBox';
 import {COLORS, FONTS} from '../../constants';
 import {ExploreIcon, GrowthIcon, InvestmentsIcon} from '../../icons';
 import ReturnIcon from '../../icons/ReturnIcon';
-import {DashboardData} from '../../constants/types';
+import useDashboard from '../../hooks/useDashboard';
 
 interface DashboardProps {}
 
-const fetch = new FetchMock(require('../../../__mocks__')).fetch;
-
 const Dashboard = (props: DashboardProps) => {
-  const [investmentsData, setInvestmentsData] = useState<DashboardData>();
-  const [loading, setLoading] = useState(true);
-
-  const getData = async () => {
-    await fetch('/api/users')
-      .then((response: any) => response.json())
-      .then((res: DashboardData) => {
-        setInvestmentsData(res);
-        setLoading(false);
-      })
-      .catch((err: string) => {
-        console.warn(err);
-        setLoading(false);
-      });
-  };
+  const {getData, loading, isFetching, investor, investments} = useDashboard();
 
   useEffect(() => {
     getData();
   }, []);
 
-  if (loading) {
+  if (isFetching || loading) {
     return (
       <View style={styles.loadingContainer}>
         <ActivityIndicator color={COLORS.blue} />
       </View>
     );
   }
-
-  const {investor} = investmentsData;
 
   return (
     <ScrollView
@@ -98,7 +79,7 @@ const Dashboard = (props: DashboardProps) => {
       />
       <InvestmentAnalysis />
       <ProfitDistribution />
-      <InvestmentsList data={investmentsData?.investments || []} />
+      <InvestmentsList data={investments || []} />
     </ScrollView>
   );
 };

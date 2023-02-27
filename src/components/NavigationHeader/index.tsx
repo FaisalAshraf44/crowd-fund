@@ -1,7 +1,7 @@
 import {DrawerHeaderProps} from '@react-navigation/drawer';
 import * as React from 'react';
 import {View, StyleSheet, TouchableOpacity} from 'react-native';
-import {COLORS} from '../../constants';
+import {COLORS, HIT_SLOP} from '../../constants';
 import {HamburgerIcon, Logo, NotificationsIcon} from '../../icons';
 
 const NavigationHeader = (props: DrawerHeaderProps) => {
@@ -12,7 +12,14 @@ const NavigationHeader = (props: DrawerHeaderProps) => {
   return (
     <View {...rest} style={styles.container}>
       <View style={styles.leftContainer}>
-        <TouchableOpacity onPress={() => openDrawer()}>
+        <TouchableOpacity
+          hitSlop={{
+            left: HIT_SLOP,
+            right: HIT_SLOP,
+            top: HIT_SLOP,
+            bottom: HIT_SLOP,
+          }}
+          onPress={() => openDrawer()}>
           <HamburgerIcon style={{color: COLORS.blue}} />
         </TouchableOpacity>
         <View style={{marginLeft: 20}}>

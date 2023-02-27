@@ -8,7 +8,8 @@ import {
   TaxIcon,
   TransactionsIcon,
 } from '../icons';
-import {COLORS} from './theme';
+
+export const HIT_SLOP = 16;
 
 export const DrawerList = [
   {id: 1, label: 'Overview', icon: <MoreIcon />},

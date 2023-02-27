@@ -1,10 +1,11 @@
 import theme, { COLORS, SIZES, FONTS } from './theme';
-import { DrawerList } from './constants'
+import { DrawerList, HIT_SLOP } from './constants'
 
 export {
     theme,
     COLORS,
     SIZES,
     FONTS,
-    DrawerList
+    DrawerList,
+    HIT_SLOP
 };
