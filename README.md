@@ -22,7 +22,7 @@ yarn
 To run on android
 
 ```
-npx react-native run-android
+npx react-native run-android 
 ```
 
 To run on ios
