@@ -21,7 +21,7 @@ const InvestmentsData = ({
       <View style={styles.iconContainer}>{icon}</View>
       <View>
         <View style={styles.row}>
-          <Text style={FONTS.largeTitle}>${value}</Text>
+          <Text style={FONTS.largeTitle}>{value}</Text>
           {growth && growth > 0 && (
             <View
               style={[
@@ -30,7 +30,7 @@ const InvestmentsData = ({
                 {backgroundColor: COLORS.lightGreen},
               ]}>
               <Text style={[styles.indicatorText, {color: COLORS.green}]}>
-                +1.1%
+                +{growth}%
               </Text>
               <GrowthUpIcon />
             </View>
@@ -43,7 +43,7 @@ const InvestmentsData = ({
                 {backgroundColor: COLORS.lightRed},
               ]}>
               <Text style={[styles.indicatorText, {color: COLORS.red}]}>
-                -1.1%
+                {growth}%
               </Text>
               <GrowthDownIcon />
             </View>

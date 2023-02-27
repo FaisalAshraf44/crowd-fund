@@ -1,14 +1,17 @@
 import * as React from 'react';
-import {Text, View, StyleSheet, FlatList} from 'react-native';
+import {Text, View, StyleSheet} from 'react-native';
 import {COLORS, FONTS} from '../../constants';
+import {Investments} from '../../constants/types';
 import {ArrowDownIcon, FiltersIcon} from '../../icons';
 import Divider from '../Divider';
 import FilterButton from '../FilterButton';
 import InvestmentItem from '../InvestmentItem';
 
-interface ProfitDistributionProps {}
+interface ProfitDistributionProps {
+  data: Investments[];
+}
 
-const InvestmentsList = (props: ProfitDistributionProps) => {
+const InvestmentsList = ({data}: ProfitDistributionProps) => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -22,12 +25,15 @@ const InvestmentsList = (props: ProfitDistributionProps) => {
 
       <Divider />
 
-      <FlatList
-        data={[{}, {}, {}]}
-        renderItem={({item}) => <InvestmentItem />}
-        keyExtractor={item => item.id}
-        ItemSeparatorComponent={() => <Divider />}
-      />
+      {data &&
+        data.map(item => {
+          return (
+            <View key={item.key}>
+              <InvestmentItem propertyData={item} />
+              <Divider />
+            </View>
+          );
+        })}
     </View>
   );
 };
@@ -41,8 +47,6 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 16,
     borderTopRightRadius: 16,
     marginTop: 24,
-    // justifyContent: 'center',
-    // alignItems: 'center',
   },
   header: {
     padding: 16,

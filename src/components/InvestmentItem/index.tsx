@@ -2,22 +2,28 @@ import * as React from 'react';
 import {Text, View, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import {property} from '../../assets/images';
 import {COLORS, FONTS} from '../../constants';
+import {Investments} from '../../constants/types';
 import {MenuIcon} from '../../icons';
 import Divider from '../Divider';
 
-interface InvestmentItemProps {}
+interface InvestmentItemProps {
+  propertyData: Investments;
+}
 
-const InvestmentItem = (props: InvestmentItemProps) => {
+const InvestmentItem = ({propertyData}: InvestmentItemProps) => {
+  const {image, propertyName, propertyValue, propertyType, date, roi} =
+    propertyData;
+
   return (
     <View style={styles.container}>
       <View style={[styles.row, styles.spaceBetween]}>
         <View style={styles.row}>
-          <Image source={property} style={styles.imageStyle} />
+          <Image source={{uri: image}} style={styles.imageStyle} />
           <View style={styles.dataContainer}>
-            <Text style={styles.title}>762 D R Placerville</Text>
+            <Text style={styles.title}>{propertyName}</Text>
             <View style={[styles.row, {marginTop: 2}]}>
-              <Text style={styles.value}>$150,000</Text>
-              <Text style={styles.label}> | Commercial</Text>
+              <Text style={styles.value}>{propertyValue}</Text>
+              <Text style={styles.label}> | {propertyType}</Text>
             </View>
           </View>
         </View>
@@ -30,11 +36,11 @@ const InvestmentItem = (props: InvestmentItemProps) => {
         <View style={styles.row}>
           <View>
             <Text style={styles.title1}>Maturity date</Text>
-            <Text style={[styles.title, {marginTop: 4}]}>Dec 23, 2023</Text>
+            <Text style={[styles.title, {marginTop: 4}]}>{date}</Text>
           </View>
           <View style={{marginLeft: 32}}>
             <Text style={styles.title1}>Return</Text>
-            <Text style={[styles.title, {marginTop: 4}]}>20%</Text>
+            <Text style={[styles.title, {marginTop: 4}]}>{roi}</Text>
           </View>
         </View>
         <TouchableOpacity style={styles.sellButton}>
