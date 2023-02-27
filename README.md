@@ -19,18 +19,19 @@ Clone repo using https://github.com/FaisalAshraf44/crowd-fund.git
 yarn
 ```
 
-```
-npx pod-install ios
-```
-
-To run on ios
-
-```
-npx react-native run-ios OR yarn ios
-```
-
 To run on android
 
 ```
 npx react-native run-android OR yarn android
 ```
+
+To run on ios
+
+```
+npx pod-install ios
+```
+
+```
+npx react-native run-ios OR yarn ios
+```
+
