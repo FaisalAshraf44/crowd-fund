@@ -4,6 +4,8 @@ import {SafeAreaView, StatusBar, useColorScheme} from 'react-native';
 
 import Navigation from './src/navigation';
 import {COLORS} from './src/constants';
+import {Provider} from 'react-redux';
+import {store} from './src/redux/store';
 
 function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
@@ -19,7 +21,9 @@ function App(): JSX.Element {
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
-      <Navigation />
+      <Provider store={store}>
+        <Navigation />
+      </Provider>
     </SafeAreaView>
   );
 }
