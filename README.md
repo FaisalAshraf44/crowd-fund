@@ -16,19 +16,11 @@ For more details, see [the Installation docs page](https://redux.js.org/introduc
 Clone repo using https://github.com/FaisalAshraf44/crowd-fund.git
 
 ```
-yarn OR npm install
+yarn
 ```
 
 ```
-cd ios
-```
-
-```
-pod install
-```
-
-```
-cd ..
+npx pod-install ios
 ```
 
 To run on ios
